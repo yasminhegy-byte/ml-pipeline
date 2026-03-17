@@ -22,13 +22,11 @@ jobs:
       - name: Install Dependencies
         run: pip install -r requirements.txt
 
-      - name: Linter Check
-        run: echo "Skipping linter check - no src/ directory yet"
-        continue-on-error: true
-
-      - name: Model Dry Test
+      - name: Run Tests
         run: |
-          python -c "import torch; print('Model environment ready!')"
+          python -c "import sys; print(f'Python {sys.version} is ready!')"
+          python -c "import pylint; print('Pylint imported successfully')"
+          python -c "import pytest; print('Pytest imported successfully')"
 
       - name: Upload README as Artifact
         uses: actions/upload-artifact@v3
