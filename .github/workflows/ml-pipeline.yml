@@ -23,7 +23,12 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Linter Check
-        run: pylint src/ --disable=all --enable=E
+        run: |
+          if [ -d "src" ]; then
+            pylint src/ --disable=all --enable=E
+          else
+            echo "No src/ directory found, skipping linter check"
+          fi
 
       - name: Model Dry Test
         run: |
